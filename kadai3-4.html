@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
     <head>
-        <meta charset="utf-8">
+        <meta charset="urf-8">
         <title>演習課題3-4：自動販売機</title>
     </head>
     <body>
@@ -22,23 +22,38 @@
             function showItemList() {
                 console.log("商品は以下の" + items.length + "種類です。");
 
-                // 配列の内容を項目毎に出力
-                // ここにコードを書く
+                let s = 0;
+                for (let i = 0; i < items.length; i++){
+                    s += i// ここにコードを書く
+                    console.log("商品番号: "+ items[i].id + "商品名: " + items[i].name + "金額: " + items[i].price +"在庫数: " + items[i].stock);// 配列の内容を項目毎に出力
+
+                }
                 console.log(""); // 空行の出力
             }
 
             // 商品購入の関数
             function buyItem(no) {
-                // ここにコードを書く
-                showItemList(); // 商品一覧の表示関数呼び出し
+                no -=1
+                if (no > 8){
+                    console.log(no,"は無効な数字です。1~8の数字を入力してください。");
+                    showItemList(); // 商品一覧の表示関数呼び出し
+                }
+                else if(items[no].stock == 0){
+                    console.log("商品番号: " + items[no].id + ",商品名: " + items[no].name + "を購入します。")// ここにコードを書く
+                    console.log("在庫がありません。");
+                    showItemList(); // 商品一覧の表示関数呼び出し
+                }
+                else{
+                    items[no].stock -= 1
+                    console.log("商品番号: " + items[no].id + ",商品名: " + items[no].name + "を購入します。")// ここにコードを書く
+                    showItemList(); // 商品一覧の表示関数呼び出し
+                }
             }
 
             showItemList(); // 商品一覧の表示関数呼び出し
             buyItem(3); // 商品購入の関数呼び出し
-
             buyItem(5); // 商品購入の関数呼び出し
             buyItem(5); // 商品購入の関数呼び出し
-
         </script>
     </body>
 </html>
